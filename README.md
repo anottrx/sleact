@@ -2,9 +2,21 @@
 
 [강의 정리 링크](https://obvious-spade-e4e.notion.site/Slack-with-React-43cbca704b524e8db75da57b2eab8fc6)
 
-실행 방법
+### 클라이언트 실행 방법
 
 ```bash
+npm i
+npm run dev
+```
+
+→ `localhost:3090`으로 접속
+
+### 서버 실행 방법
+
+[서버 레포지토리](https://github.com/ZeroCho/sleact) (MySQL 서버 실행 및 설정 필요)
+
+```bash
+cd /back
 npm i
 npm run dev
 ```

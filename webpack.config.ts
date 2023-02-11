@@ -9,6 +9,7 @@ interface Configuration extends WebpackConfiguration {
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; 
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
@@ -64,6 +65,9 @@ const config: Configuration = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+    }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       // eslint: {

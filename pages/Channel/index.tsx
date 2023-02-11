@@ -1,12 +1,7 @@
-import Workspace from '@layouts/Workspace';
 import React from 'react';
 
 const Channel = () => {
-  return (
-    <Workspace>
-      <div>로그인 하신 것을 축하드려요</div>
-    </Workspace>
-  );
+  return (<div>채널페이지</div>);
 };
 
 export default Channel;

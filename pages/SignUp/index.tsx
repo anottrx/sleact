@@ -4,7 +4,7 @@ import React, { useCallback, useState, VFC } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './styles';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const SignUp = () => {
   const { data, error, mutate } = useSWR('/api/users', fetcher);
@@ -60,13 +60,13 @@ const SignUp = () => {
     [email, nickname, password, passwordCheck, mismatchError],
   );
 
-  // if (data === undefined) {
-  //   return <div>로딩중...</div>;
-  // }
+  if (data === undefined) {
+    return <div>로딩중...</div>;
+  }
 
-  // if (data) {
-  //   return <Redirect to="/workspace/sleact/channel/일반" />;
-  // }
+  if (data) {
+    return <Navigate to="/workspace/sleact/channel/일반" replace />;
+  }
 
   return (
     <div id="container">

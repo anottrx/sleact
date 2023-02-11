@@ -41,7 +41,7 @@ const LogIn = () => {
   }
 
   if (data) {
-    return <Navigate to="/workspace/channel" replace />;
+    return <Navigate to="/workspace/sleact/channel/일반" replace />;
   }
 
   // console.log(error, userData);

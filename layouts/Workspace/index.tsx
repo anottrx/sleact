@@ -31,6 +31,8 @@ import { useParams } from 'react-router';
 import CreateChannelModal from '@components/CreateChannelModal';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import InviteChannelModal from '@components/InviteChannelModal';
+import DMList from '@components/DMList';
+import ChannelList from '@components/ChannelList';
 
 const Channel = loadable(() => import('@pages/Channel'));
 const DirectMessage = loadable(() => import('@pages/DirectMessage'));
@@ -64,7 +66,7 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
       .then(() => {
         mutate(false, false);
       });
-  }, []);
+  }, [mutate]);
 
   const onCloseUserProfile = useCallback((e: { stopPropagation: () => void }) => {
     e.stopPropagation();
@@ -126,7 +128,9 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
     setShowCreateChannelModal(true);
   }, []);
 
-  const onClickInviteWorkspace = useCallback(() => {}, []);
+  const onClickInviteWorkspace = useCallback(() => {
+    setShowInviteWorkspaceModal(true);
+  }, []);
 
   if (!userData) {
     return <Navigate to="/login" replace />;
@@ -175,15 +179,14 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
                 <button onClick={onLogout}>로그아웃</button>
               </WorkspaceModal>
             </Menu>
-            {channelData?.map((v) => (
-              <div>{v.name}</div>
-            ))}
+            <ChannelList />
+            <DMList />
           </MenuScroll>
         </Channels>
         <Chats>
           <Routes>
-            <Route path="/workspace/:workspace/channel/:channel" element={<Channel />} />
-            <Route path="/workspace/:workspace/dm/:id" element={<DirectMessage />} />
+            <Route path="/channel/:channel" element={<Channel />} />
+            <Route path="/dm/:id" element={<DirectMessage />} />
           </Routes>
         </Chats>
       </WorkspaceWrapper>
